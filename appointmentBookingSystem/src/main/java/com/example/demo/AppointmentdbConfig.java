@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.example.demo", "com.example.demo"}, entityManagerFactoryRef = "mykaarmaEntityManagerFactory", transactionManagerRef = "mykaarmaTransactionManager")
+@EnableJpaRepositories(basePackages = {"com.example.demo.model", "com.example.demo.repository"}, entityManagerFactoryRef = "mykaarmaEntityManagerFactory", transactionManagerRef = "mykaarmaTransactionManager")
 public class AppointmentdbConfig {
 
     /**
@@ -54,7 +54,7 @@ public class AppointmentdbConfig {
      */
     @Bean(name = "mykaarmaEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean mykaarmaEntityManagerFactory(EntityManagerFactoryBuilder builder, @Qualifier("mykaarmaDataSource") DataSource mykaarmadataSource) {
-        return builder.dataSource(mykaarmadataSource).packages("com.example.demo", "com.example.demo").build();
+        return builder.dataSource(mykaarmadataSource).packages("com.example.demo.model", "com.example.demo.repository").build();
 
     }
 

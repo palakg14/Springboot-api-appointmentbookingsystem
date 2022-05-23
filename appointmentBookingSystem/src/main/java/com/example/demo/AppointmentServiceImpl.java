@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.demo.model.Appointment;
+import com.example.demo.repository.AppointmentRepository;
+
 @Service
 public class AppointmentServiceImpl {//implements AppointmentService {
 
@@ -31,9 +34,9 @@ public class AppointmentServiceImpl {//implements AppointmentService {
     public ResponseEntity <Appointment> update(@PathVariable(value = "appointmentId") Long id,
 	        @Valid @RequestBody Appointment appointmentDetails) throws ResourceNotFoundException {
 	        Appointment ap = ar.findById(id).orElseThrow(() -> new ResourceNotFoundException("Appointment not found for this id :: " + id));
-	        ap.setDateTime(appointmentDetails.getDateTime());
-	        ap.setName(appointmentDetails.getName());
-	        ap.setCid(appointmentDetails.getCid());
+	        ap.setAppointmentDateTime(appointmentDetails.getAppointmentDateTime());
+	        ap.setCustomerName(appointmentDetails.getCustomerName());
+	        ap.setCustomerId(appointmentDetails.getCustomerId());
 	        final Appointment updatedAppointment = ar.save(ap);
 	        return ResponseEntity.ok(updatedAppointment);
     }
